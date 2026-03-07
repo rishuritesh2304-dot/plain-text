@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Happy Anniversary</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(45deg,#ff758c,#ff7eb3);
+color:white;
+overflow:hidden;
+}
+
+h1{
+margin-top:40px;
+font-size:40px;
+}
+
+button{
+padding:14px 30px;
+border:none;
+background:#ff4d6d;
+color:white;
+font-size:20px;
+border-radius:12px;
+cursor:pointer;
+}
+
+#countdown{
+font-size:90px;
+margin-top:120px;
+display:none;
+}
+
+#slideshow{
+display:none;
+margin-top:20px;
+}
+
+img{
+width:80%;
+max-width:420px;
+border-radius:15px;
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
+animation:zoom 6s infinite;
+}
+
+@keyframes zoom{
+
+0%{transform:scale(1)}
+
+50%{transform:scale(1.1)}
+
+100%{transform:scale(1)}
+
+}
+
+#message{
+margin-top:25px;
+font-size:24px;
+}
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:24px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-900px);
+opacity:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<script>
+
+let password = prompt("Enter Password to see the surprise ❤️");
+
+if(password !== "ritesh123"){
+document.body.innerHTML = "<h1 style='text-align:center;margin-top:200px;'>Access Denied ❌</h1>";
+}
+
+</script>
+
+<h1>Mom ❤️ Dad</h1>
+<h2>Happy Anniversary</h2>
+
+<button onclick="start()">Click for Surprise</button>
+
+<div id="countdown"></div>
+
+<div id="slideshow">
+
+<img id="photo" src="photo1.jpg">
+
+<div id="message"></div>
+
+</div>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<script>
+
+let photos=[
+
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg",
+"photo5.jpg",
+"photo6.jpg",
+"photo7.jpg"
+
+]
+
+let i=0
+
+function start(){
+
+let count=["3","2","1","❤️"]
+
+let c=0
+
+document.getElementById("countdown").style.display="block"
+
+let timer=setInterval(function(){
+
+document.getElementById("countdown").innerHTML=count[c]
+
+c++
+
+if(c>=count.length){
+
+clearInterval(timer)
+
+document.getElementById("countdown").style.display="none"
+
+launch()
+
+}
+
+},1000)
+
+}
+
+function launch(){
+
+document.getElementById("slideshow").style.display="block"
+
+document.getElementById("music").play()
+
+setInterval(changePhoto,4000)
+
+typeMessage()
+
+createHearts()
+
+}
+
+function changePhoto(){
+
+i++
+
+if(i>=photos.length){
+
+i=0
+
+}
+
+document.getElementById("photo").src=photos[i]
+
+}
+
+let text="Thank you for showing me what true love means ❤️"
+
+let j=0
+
+function typeMessage(){
+
+let msg=document.getElementById("message")
+
+let typing=setInterval(function(){
+
+msg.innerHTML+=text.charAt(j)
+
+j++
+
+if(j>=text.length){
+
+clearInterval(typing)
+
+}
+
+},80)
+
+}
+
+function createHearts(){
+
+setInterval(function(){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.fontSize=(20+Math.random()*20)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(function(){
+
+heart.remove()
+
+},6000)
+
+},500)
+
+}
+
+</script>
+
+</body>
+</html>
